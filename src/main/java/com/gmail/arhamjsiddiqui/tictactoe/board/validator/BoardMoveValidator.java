@@ -22,7 +22,7 @@ public class BoardMoveValidator {
     }
 
     public boolean isFirstMoveAndXMoved(IPlayer player) {
-        return !moved && player.getMark() == Mark.X;
+        return moved || player.getMark() == Mark.X;
     }
 
     public void moved() {

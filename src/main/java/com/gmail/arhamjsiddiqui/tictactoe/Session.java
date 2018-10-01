@@ -2,12 +2,15 @@ package com.gmail.arhamjsiddiqui.tictactoe;
 
 import com.gmail.arhamjsiddiqui.tictactoe.board.IBoard;
 import com.gmail.arhamjsiddiqui.tictactoe.player.IPlayer;
+import com.gmail.arhamjsiddiqui.tictactoe.player.Mark;
 
 public class Session {
     private IBoard board;
     private IPlayer playerOne;
     private IPlayer playerTwo;
     private IPlayer winner;
+
+    private WinnerValidator winnerValidator = new WinnerValidator();
 
     Session() { }
 
@@ -36,7 +39,8 @@ public class Session {
     }
 
     public void determineWinner() {
-        winner = playerOne;
+        Mark mark = winnerValidator.whoHasWon(board);
+        winner = mark == playerOne.getMark() ? playerOne : mark == playerTwo.getMark() ? playerTwo : null;
     }
 
     public IPlayer getWinner() {

@@ -31,6 +31,17 @@ public class BoardTest {
         session.getBoard().mark(session.getPlayerTwo(), Row.BOTTOM_ROW, Column.RIGHT);
     }
 
+    @Test
+    public void xMovesFirstShouldThrowNoExceptions() {
+        session.getBoard().mark(session.getPlayerOne(), Row.BOTTOM_ROW, Column.RIGHT);
+    }
+
+    @Test
+    public void doMultipleMovesWithXFirstShouldThrowNoException() {
+        session.getBoard().mark(session.getPlayerOne(), Row.BOTTOM_ROW, Column.RIGHT)
+                .mark(session.getPlayerTwo(), Row.TOP_ROW, Column.RIGHT);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void placeOnSameCoordShouldThrowIllegalArgumentException() {
         session.getBoard().mark(session.getPlayerOne(), Row.TOP_ROW, Column.RIGHT)
