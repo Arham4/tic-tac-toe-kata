@@ -14,20 +14,34 @@ public class BoardTest {
         Assert.assertEquals(session.getBoard().getMark(Row.TOP_ROW, Column.LEFT), session.getPlayerOne().getMark());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void placeOnSameCoordShouldThrowIllegalArgumentException() {
+        Session session = new Session();
+        session.getBoard().mark(session.getPlayerOne(), Row.TOP_ROW, Column.RIGHT)
+                .mark(session.getPlayerTwo(), Row.TOP_ROW, Column.RIGHT);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void playerMovingTwiceShouldThrowIllegalArgumentException() {
+        Session session = new Session();
+        session.getBoard().mark(session.getPlayerOne(), Row.TOP_ROW, Column.RIGHT)
+                .mark(session.getPlayerOne(), Row.BOTTOM_ROW, Column.RIGHT);
+    }
+
     @Test(expected = NullPointerException.class)
-    public void placeMarkOnNullRowShouldReturnNullPointerException() {
+    public void placeMarkOnNullRowShouldThrowNullPointerException() {
         Session session = new Session();
         session.getBoard().mark(session.getPlayerOne(), null, Column.RIGHT);
     }
 
     @Test(expected = NullPointerException.class)
-    public void placeMarkOnNullColumnShouldReturnNullPointerException() {
+    public void placeMarkOnNullColumnShouldThrowNullPointerException() {
         Session session = new Session();
         session.getBoard().mark(session.getPlayerOne(), Row.TOP_ROW, null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void placeMarkUsingNullPlayerShouldReturnNullPointerException() {
+    public void placeMarkUsingNullPlayerShouldThrowNullPointerException() {
         Session session = new Session();
         session.getBoard().mark(null, Row.TOP_ROW, Column.LEFT);
     }
