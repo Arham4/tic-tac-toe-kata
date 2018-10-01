@@ -4,6 +4,7 @@ import com.gmail.arhamjsiddiqui.tictactoe.coordinates.Column;
 import com.gmail.arhamjsiddiqui.tictactoe.coordinates.Row;
 import com.gmail.arhamjsiddiqui.tictactoe.player.IPlayer;
 import com.gmail.arhamjsiddiqui.tictactoe.player.Mark;
+import com.google.common.base.Preconditions;
 
 public class Board implements IBoard {
     private final Mark[][] markedBoard;
@@ -13,12 +14,17 @@ public class Board implements IBoard {
     }
 
     @Override
-    public Mark[][] getMarkedBoard() {
-        return markedBoard;
+    public Mark getMark(Row row, Column column) {
+        Preconditions.checkNotNull(row);
+        Preconditions.checkNotNull(column);
+        return null;
     }
 
     @Override
     public IBoard mark(IPlayer player, Row row, Column column) {
+        Preconditions.checkNotNull(player);
+        Preconditions.checkNotNull(row);
+        Preconditions.checkNotNull(column);
         return this;
     }
 }
