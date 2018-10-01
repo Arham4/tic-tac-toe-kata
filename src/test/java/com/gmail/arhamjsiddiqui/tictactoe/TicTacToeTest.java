@@ -1,9 +1,9 @@
 package com.gmail.arhamjsiddiqui.tictactoe;
 
-import org.junit.Assert;
+import com.gmail.arhamjsiddiqui.tictactoe.coordinates.Column;
+import com.gmail.arhamjsiddiqui.tictactoe.coordinates.Row;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 
 public class TicTacToeTest {

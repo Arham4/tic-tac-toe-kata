@@ -1,10 +1,15 @@
 package com.gmail.arhamjsiddiqui.tictactoe;
 
+import com.gmail.arhamjsiddiqui.tictactoe.board.Board;
+import com.gmail.arhamjsiddiqui.tictactoe.board.IBoard;
+import com.gmail.arhamjsiddiqui.tictactoe.player.IPlayer;
+import com.gmail.arhamjsiddiqui.tictactoe.player.Player;
+
 public class Session {
-    private final Board board;
-    private final Player playerOne;
-    private final Player playerTwo;
-    private Player winner;
+    private final IBoard board;
+    private final IPlayer playerOne;
+    private final IPlayer playerTwo;
+    private IPlayer winner;
 
     public Session() {
         board = new Board(3, 3);
@@ -13,15 +18,15 @@ public class Session {
     }
 
 
-    public Board getBoard() {
+    public IBoard getBoard() {
         return board;
     }
 
-    public Player getPlayerOne() {
+    public IPlayer getPlayerOne() {
         return playerOne;
     }
 
-    public Player getPlayerTwo() {
+    public IPlayer getPlayerTwo() {
         return playerTwo;
     }
 
@@ -29,7 +34,7 @@ public class Session {
         winner = playerOne;
     }
 
-    public Player getWinner() {
+    public IPlayer getWinner() {
         return winner;
     }
 }
