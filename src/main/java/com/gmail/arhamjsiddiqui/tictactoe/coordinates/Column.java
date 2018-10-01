@@ -19,4 +19,13 @@ public enum Column {
     public int getIndex() {
         return index;
     }
+
+    public static Column getColumnForIndex(int index) {
+        for (Column column : values()) {
+            if (column.getIndex() == index) {
+                return column;
+            }
+        }
+        return null;
+    }
 }

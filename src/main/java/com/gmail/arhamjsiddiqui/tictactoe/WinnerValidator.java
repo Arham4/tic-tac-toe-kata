@@ -11,7 +11,8 @@ public class WinnerValidator implements IWinnerValidator {
     public Mark whoHasWon(IBoard board) {
         Mark[] possibleWinners = {
                 getHorizontalWinner(board),
-                getVerticalWinner(board)
+                getVerticalWinner(board),
+                getDiagonalWinner(board)
         };
         for (Mark possibleWinner : possibleWinners) {
             if (possibleWinner != null) {
@@ -20,6 +21,57 @@ public class WinnerValidator implements IWinnerValidator {
         }
         return null;
     }
+
+    private Mark getDiagonalWinner(IBoard board) {
+        Mark[] possibleWinners = {
+                getLeftToRightWinner(board),
+                getRightToLeftWinner(board)
+        };
+        for (Mark possibleWinner : possibleWinners) {
+            if (possibleWinner != null) {
+                return possibleWinner;
+            }
+        }
+        return null;
+    }
+
+    private Mark getLeftToRightWinner(IBoard board) {
+        for (Mark mark : Mark.values()) {
+            if (isLeftToRightWinnerForMark(board, mark)) {
+                return mark;
+            }
+        }
+        return null;
+    }
+
+    private boolean isLeftToRightWinnerForMark(IBoard board, Mark mark) {
+        for (int y = 0, x = 0; y < 3 && x < 3; y++, x++) {
+            if (!isMark(board, mark, Row.getRowForIndex(y), Column.getColumnForIndex(x))) {
+               return false;
+            }
+        }
+        return true;
+    }
+
+
+    private Mark getRightToLeftWinner(IBoard board) {
+        for (Mark mark : Mark.values()) {
+            if (isRightToLeftWinnerForMark(board, mark)) {
+                return mark;
+            }
+        }
+        return null;
+    }
+
+    private boolean isRightToLeftWinnerForMark(IBoard board, Mark mark) {
+        for (int y = 0, x = 2; y < 3 && x >= 0; y++, x--) {
+            if (!isMark(board, mark, Row.getRowForIndex(y), Column.getColumnForIndex(x))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     private Mark getVerticalWinner(IBoard board) {
         for (Column column : Column.values()) {
@@ -41,13 +93,12 @@ public class WinnerValidator implements IWinnerValidator {
     }
 
     private boolean isVerticalWinForRowForMark(IBoard board, Mark mark, Column column) {
-        boolean won = true;
         for (Row row : Row.values()) {
             if (!isMark(board, mark, row, column)) {
-                won = false;
+                return false;
             }
         }
-        return won;
+        return true;
     }
 
     private Mark getHorizontalWinner(IBoard board) {
@@ -70,13 +121,12 @@ public class WinnerValidator implements IWinnerValidator {
     }
 
     private boolean isHorizontalWinForRowForMark(IBoard board, Mark mark, Row row) {
-        boolean won = true;
         for (Column column : Column.values()) {
             if (!isMark(board, mark, row, column)) {
-                won = false;
+                return false;
             }
         }
-        return won;
+        return true;
     }
 
     private boolean isMark(IBoard board, Mark mark, Row row, Column column) {

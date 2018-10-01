@@ -19,4 +19,13 @@ public enum Row {
     public int getIndex() {
         return index;
     }
+
+    public static Row getRowForIndex(int index) {
+        for (Row row : values()) {
+            if (row.getIndex() == index) {
+                return row;
+            }
+        }
+        return null;
+    }
 }
