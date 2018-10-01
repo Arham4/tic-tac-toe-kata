@@ -7,6 +7,7 @@ import com.gmail.arhamjsiddiqui.tictactoe.player.Mark;
 
 public class BoardMoveValidator {
     private IPlayer lastPlayerToMove;
+    private boolean moved;
 
     public boolean notSamePlayerMovedTwice(IPlayer playerInQuestion) {
         return playerInQuestion != lastPlayerToMove;
@@ -18,5 +19,13 @@ public class BoardMoveValidator {
 
     public boolean isEmptyCoordinate(Mark[][] markedBoard, Row row, Column column) {
         return markedBoard[row.getIndex()][column.getIndex()] == null;
+    }
+
+    public boolean isFirstMoveAndXMoved(IPlayer player) {
+        return !moved && player.getMark() == Mark.X;
+    }
+
+    public void moved() {
+        moved = true;
     }
 }

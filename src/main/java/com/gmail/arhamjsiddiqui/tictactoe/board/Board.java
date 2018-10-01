@@ -29,13 +29,27 @@ public class Board implements IBoard {
         Preconditions.checkNotNull(player);
         Preconditions.checkNotNull(row);
         Preconditions.checkNotNull(column);
+        Preconditions.checkArgument(isFirstMoveAndXMoved(player), "First player to move must be X.");
         Preconditions.checkArgument(isEmptyCoordinate(row, column), "Marked on a coordinate more than once.");
         Preconditions.checkArgument(notSamePlayerMovedTwice(player), "Same player moved twice.");
 
         Mark mark = player.getMark();
         markedBoard[row.getIndex()][column.getIndex()] = mark;
-        boardMoveValidator.setLastPlayerToMove(player);
+
+        invokeValidator(player);
         return this;
+    }
+
+    /**
+     * Allows for verification flow.
+     */
+    private void invokeValidator(IPlayer player) {
+        boardMoveValidator.setLastPlayerToMove(player);
+        boardMoveValidator.moved();
+    }
+
+    private boolean isFirstMoveAndXMoved(IPlayer player) {
+        return boardMoveValidator.isFirstMoveAndXMoved(player);
     }
 
     private boolean isEmptyCoordinate(Row row, Column column) {
