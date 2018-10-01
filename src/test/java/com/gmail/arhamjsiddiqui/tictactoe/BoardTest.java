@@ -2,6 +2,7 @@ package com.gmail.arhamjsiddiqui.tictactoe;
 
 import com.gmail.arhamjsiddiqui.tictactoe.coordinates.Column;
 import com.gmail.arhamjsiddiqui.tictactoe.coordinates.Row;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class BoardTest {
@@ -10,6 +11,7 @@ public class BoardTest {
         Session session = new Session();
         session.getBoard().mark(session.getPlayerOne(), Row.TOP_ROW, Column.LEFT);
 
+        Assert.assertEquals(session.getBoard().getMark(Row.TOP_ROW, Column.LEFT), session.getPlayerOne().getMark());
     }
 
     @Test(expected = NullPointerException.class)

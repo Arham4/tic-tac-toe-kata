@@ -3,6 +3,7 @@ package com.gmail.arhamjsiddiqui.tictactoe;
 import com.gmail.arhamjsiddiqui.tictactoe.board.Board;
 import com.gmail.arhamjsiddiqui.tictactoe.board.IBoard;
 import com.gmail.arhamjsiddiqui.tictactoe.player.IPlayer;
+import com.gmail.arhamjsiddiqui.tictactoe.player.Mark;
 import com.gmail.arhamjsiddiqui.tictactoe.player.Player;
 
 public class Session {
@@ -13,8 +14,8 @@ public class Session {
 
     public Session() {
         board = new Board(3, 3);
-        playerOne = new Player();
-        playerTwo = new Player();
+        playerOne = new Player(Mark.X);
+        playerTwo = new Player(Mark.O);
     }
 
 

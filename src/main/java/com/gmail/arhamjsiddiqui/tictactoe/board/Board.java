@@ -17,7 +17,8 @@ public class Board implements IBoard {
     public Mark getMark(Row row, Column column) {
         Preconditions.checkNotNull(row);
         Preconditions.checkNotNull(column);
-        return null;
+
+        return markedBoard[row.getIndex()][column.getIndex()];
     }
 
     @Override
@@ -25,6 +26,9 @@ public class Board implements IBoard {
         Preconditions.checkNotNull(player);
         Preconditions.checkNotNull(row);
         Preconditions.checkNotNull(column);
+
+        Mark mark = player.getMark();
+        markedBoard[row.getIndex()][column.getIndex()] = mark;
         return this;
     }
 }
