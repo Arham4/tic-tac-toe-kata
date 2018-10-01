@@ -2,14 +2,25 @@ package com.gmail.arhamjsiddiqui.tictactoe;
 
 import com.gmail.arhamjsiddiqui.tictactoe.coordinates.Column;
 import com.gmail.arhamjsiddiqui.tictactoe.coordinates.Row;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class TicTacToeTest {
+    private Session session;
+
+    @Before
+    public void initializeSession() {
+        SessionInitializerTest sessionInitializerTest = new SessionInitializerTest();
+        sessionInitializerTest.makeSession();
+        sessionInitializerTest.makeSessionVerifyFields();
+        
+        session = new SessionInitializer().makeSession();
+    }
+
     @Test
     public void testExampleGame() {
-        Session session = new Session();
         session.getBoard()
                 .mark(session.getPlayerOne(), Row.TOP_ROW, Column.LEFT)
                 .mark(session.getPlayerTwo(), Row.MIDDLE_ROW, Column.LEFT)
